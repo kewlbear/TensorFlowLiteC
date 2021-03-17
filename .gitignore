@@ -1,0 +1,7 @@
+Frameworks
+*.xcframework
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
+xcuserdata/
