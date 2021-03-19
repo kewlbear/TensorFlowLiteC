@@ -5,3 +5,7 @@ Frameworks
 /Packages
 /*.xcodeproj
 xcuserdata/
+Pods
+Podfile
+Podfile.lock
+*.xcworkspace

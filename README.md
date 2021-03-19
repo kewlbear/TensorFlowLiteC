@@ -1,3 +1,5 @@
 # TensorFlowLiteC
 
-A description of this package.
+Unofficial Swift package of TensorFlowLiteC
+
+Downloaded binary frameworks from official CocoaPod and repackaged for Swift package manager
