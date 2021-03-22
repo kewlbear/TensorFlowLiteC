@@ -26,5 +26,5 @@ jobs:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         files: 'App/Pods/TensorFlowLiteC/Frameworks/*.zip'
     - name: Get date
-        id: date
-        run: echo "::set-output name=date::$(date -v -1d +%Y%m%d)"
+      id: date
+      run: echo "::set-output name=date::$(date -v -1d +%Y%m%d)"
