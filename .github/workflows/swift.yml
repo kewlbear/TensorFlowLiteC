@@ -2,7 +2,7 @@ name: Swift
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "23 * * * *"
   push:
     branches: [ master ]
   pull_request:
