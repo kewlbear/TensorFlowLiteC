@@ -19,3 +19,9 @@ jobs:
       uses: EndBug/add-and-commit@v7
       with:
         add: 'Package.swift'
+    - name: Release
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        files: 'App/Pods/TensorFlowLiteC/Frameworks/*.zip'
