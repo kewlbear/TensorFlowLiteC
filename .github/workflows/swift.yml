@@ -12,6 +12,9 @@ jobs:
     runs-on: macos-latest
 
     steps:
+    - name: Get date
+      id: date
+      run: echo "::set-output name=date::$(date -v -1d +%Y%m%d)"
     - uses: actions/checkout@v2
     - name: Convert
       run: sh Scripts/all.sh
@@ -25,6 +28,3 @@ jobs:
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         files: 'App/Pods/TensorFlowLiteC/Frameworks/*.zip'
-    - name: Get date
-      id: date
-      run: echo "::set-output name=date::$(date -v -1d +%Y%m%d)"
