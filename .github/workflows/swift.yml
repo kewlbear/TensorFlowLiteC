@@ -26,5 +26,5 @@ jobs:
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "${{ steps.date.outputs.data }}"
+        automatic_release_tag: "${{ steps.date.outputs.date }}"
         files: 'App/Pods/TensorFlowLiteC/Frameworks/*.zip'
