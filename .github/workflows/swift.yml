@@ -1,0 +1,27 @@
+name: Swift
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Convert
+      run: sh Scripts/all.sh
+    - name: Commit
+      uses: EndBug/add-and-commit@v7
+      with:
+        add: 'Package.swift'
+    - name: Release
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        files: 'App/Pods/TensorFlowLiteC/Frameworks/*.zip'
