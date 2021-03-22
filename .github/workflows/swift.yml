@@ -22,9 +22,9 @@ jobs:
       uses: EndBug/add-and-commit@v7
       with:
         add: 'Package.swift'
-        tag: ${{ steps.date.outputs.date }}
     - name: Release
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "${{ steps.date.outputs.data }}"
         files: 'App/Pods/TensorFlowLiteC/Frameworks/*.zip'
