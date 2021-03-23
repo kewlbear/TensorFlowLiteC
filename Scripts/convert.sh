@@ -43,6 +43,6 @@ xcodebuild -create-xcframework -output $name.xcframework -framework temp/device/
 
 rm -rf temp
 
-zip -r $name.zip $name.xcframework
+zip -r $name.xcframework.zip $name.xcframework
 
-swift package compute-checksum $name.zip >$name.zip.checksum
+swift package compute-checksum $name.xcframework.zip >$name.xcframework.zip.checksum

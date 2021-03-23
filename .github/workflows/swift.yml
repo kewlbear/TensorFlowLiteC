@@ -1,32 +1,59 @@
-name: Swift
+name: Check
 
 on:
   schedule:
-    - cron: "23 * * * *"
+    - cron: "21 0 * * *"
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
 jobs:
-  build:
+  nightly:
 
     runs-on: macos-latest
 
     steps:
-    - name: Get date
-      id: date
-      run: echo "::set-output name=date::$(date -v -1d +%Y%m%d)"
     - uses: actions/checkout@v2
-    - name: Convert
-      run: sh Scripts/all.sh
+    - id: date
+      run: echo "::set-output name=version::0.0.1-nightly.$(date -v -1d +%Y%m%d)"
+    - name: DRY
+      run: ! git tag | grep ${{ steps.date.outputs.version }}
+    - run: sh Scripts/pod.sh ${{ steps.date.outputs.version }}
+    - name: Create XCFrameworks and Package.swift
+      run: sh Scripts/all.sh ${{ steps.date.outputs.version }}
     - name: Commit
       uses: EndBug/add-and-commit@v7
       with:
         add: 'Package.swift'
+        message: "add ${{ steps.date.outputs.version }}"
     - name: Release
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "${{ steps.date.outputs.date }}"
+        automatic_release_tag: "${{ steps.date.outputs.version }}"
+        files: 'App/Pods/TensorFlowLiteC/Frameworks/*.zip'
+
+  release:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - id: pod
+      run: sh Scripts/pod.sh
+    - name: DRY
+      run: ! git tag | grep ${{ steps.pod.outputs.version }}
+    - name: Create XCFrameworks and Package.swift
+      run: sh Scripts/all.sh ${{ steps.pod.outputs.version }}
+    - name: Commit
+      uses: EndBug/add-and-commit@v7
+      with:
+        add: 'Package.swift'
+        message: "add ${{ steps.pod.outputs.version }}"
+    - name: Release
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "${{ steps.pod.outputs.version }}"
         files: 'App/Pods/TensorFlowLiteC/Frameworks/*.zip'
