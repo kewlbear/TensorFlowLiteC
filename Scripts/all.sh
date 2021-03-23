@@ -1,6 +1,6 @@
 V=$1
 
-cd Pods/TensorFlowLiteC/Frameworks
+cd App/Pods/TensorFlowLiteC/Frameworks
 
 for f in *.framework
 do
