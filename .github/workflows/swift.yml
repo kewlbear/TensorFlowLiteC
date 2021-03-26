@@ -2,7 +2,7 @@ name: Check
 
 on:
   schedule:
-    - cron: "21 0 * * *"
+    - cron: "21 */8 * * *"
   push:
     branches: [ master ]
   pull_request:
