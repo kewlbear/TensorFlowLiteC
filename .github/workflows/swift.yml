@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        fetch-depth: 0
+        fetch-depth: 20
     - run: echo $(git tag)
     - run: sh Scripts/pod.sh 0.0.1-nightly.$(date -v -1d +%Y%m%d)
       id: pod
