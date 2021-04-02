@@ -15,26 +15,28 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - id: date
-      run: echo "::set-output name=version::0.0.1-nightly.$(date -v -1d +%Y%m%d)"
-    - name: DRY
-      run: test -z "$(git tag | grep ${{ steps.date.outputs.version }})"
-    - run: sh Scripts/pod.sh ${{ steps.date.outputs.version }}
+    - run: sh Scripts/pod.sh 0.0.1-nightly.$(date -v -1d +%Y%m%d)
+      id: pod
     - name: Create XCFrameworks and Package.swift
-      run: sh Scripts/all.sh ${{ steps.date.outputs.version }}
+      if: ${{ steps.pod.outputs.version }}
+      run: sh Scripts/all.sh ${{ steps.pod.outputs.version }}
     - name: Commit
+      if: ${{ steps.pod.outputs.version }}
       uses: EndBug/add-and-commit@v7
       with:
         add: 'Package.swift'
-        message: "add ${{ steps.date.outputs.version }}"
+        message: "add ${{ steps.pod.outputs.version }}"
     - name: Release
+      if: ${{ steps.pod.outputs.version }}
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "${{ steps.date.outputs.version }}"
+        automatic_release_tag: "${{ steps.pod.outputs.version }}"
         files: 'App/Pods/TensorFlowLiteC/Frameworks/*.zip'
 
   release:
+
+    needs: nightly
 
     runs-on: macos-latest
 
@@ -42,16 +44,17 @@ jobs:
     - uses: actions/checkout@v2
     - id: pod
       run: sh Scripts/pod.sh
-    - name: DRY
-      run: test -z "$(git tag | grep ${{ steps.pod.outputs.version }})"
     - name: Create XCFrameworks and Package.swift
+      if: ${{ steps.pod.outputs.version }}
       run: sh Scripts/all.sh ${{ steps.pod.outputs.version }}
     - name: Commit
+      if: ${{ steps.pod.outputs.version }}
       uses: EndBug/add-and-commit@v7
       with:
         add: 'Package.swift'
         message: "add ${{ steps.pod.outputs.version }}"
     - name: Release
+      if: ${{ steps.pod.outputs.version }}
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
