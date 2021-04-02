@@ -15,6 +15,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - run: git tag
     - run: sh Scripts/pod.sh 0.0.1-nightly.$(date -v -1d +%Y%m%d)
       id: pod
     - name: Create XCFrameworks and Package.swift
