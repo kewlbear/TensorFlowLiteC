@@ -15,6 +15,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 20
+    - run: echo $(git tag)
     - run: sh Scripts/pod.sh 0.0.1-nightly.$(date -v -1d +%Y%m%d)
       id: pod
     - name: Create XCFrameworks and Package.swift
@@ -42,6 +45,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - id: pod
       run: sh Scripts/pod.sh
     - name: Create XCFrameworks and Package.swift
