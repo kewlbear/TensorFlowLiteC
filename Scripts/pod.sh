@@ -9,7 +9,8 @@ then
   sed s/VERSION//g Podfile.in > Podfile
 else
   (git tag | grep "$V") && exit
-  sed s/VERSION/", '~> $V'"/g Podfile.in > Podfile
+  N=`echo $V | sed 's/\(\.[^0]\)/.1-nightly\1/'`
+  sed s/VERSION/", '~> $N'"/g Podfile.in > Podfile
 fi
 
 pod install
