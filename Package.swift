@@ -16,9 +16,9 @@ let package = Package(
         ),
     ],
     targets: [
-        .binaryTarget(name: "TensorFlowLiteC", url: "https://github.com/kewlbear/TensorFlowLiteC/releases/download/0.0.20210629/TensorFlowLiteC.xcframework.zip", checksum: "bde2884b635b74b81540c56f09d3702d2cfdcf8f3fc56fa17b87d33bdfbe127e"),
-        .binaryTarget(name: "TensorFlowLiteCCoreML", url: "https://github.com/kewlbear/TensorFlowLiteC/releases/download/0.0.20210629/TensorFlowLiteCCoreML.xcframework.zip", checksum: "d21fe732af6eeb315e0ad66f28397d0a64878904b75642ecfcd10add4a750d16"),
-        .binaryTarget(name: "TensorFlowLiteCMetal", url: "https://github.com/kewlbear/TensorFlowLiteC/releases/download/0.0.20210629/TensorFlowLiteCMetal.xcframework.zip", checksum: "42c1997c15f276ff0ddeb850859bdf68dd112208c5f8433e0b0868adaee82181"),
+        .binaryTarget(name: "TensorFlowLiteC", url: "https://github.com/kewlbear/TensorFlowLiteC/releases/download/0.0.20210630/TensorFlowLiteC.xcframework.zip", checksum: "eb022f1a00b9ffd5acd5265df6535270050a406109262d8a755c2b2b778a748a"),
+        .binaryTarget(name: "TensorFlowLiteCCoreML", url: "https://github.com/kewlbear/TensorFlowLiteC/releases/download/0.0.20210630/TensorFlowLiteCCoreML.xcframework.zip", checksum: "2459d2e009728b85babbe91ad69209aa95d7a27a02052ac6ff66f56886ce6af9"),
+        .binaryTarget(name: "TensorFlowLiteCMetal", url: "https://github.com/kewlbear/TensorFlowLiteC/releases/download/0.0.20210630/TensorFlowLiteCMetal.xcframework.zip", checksum: "021e7682de0a3c755a84cb30a6c83dc639a8e8166589278311ba2a633056fa49"),
         .target(name: "Link",
                 linkerSettings: [.linkedLibrary("c++")]),
     ]
