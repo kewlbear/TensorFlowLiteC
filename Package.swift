@@ -16,9 +16,9 @@ let package = Package(
         ),
     ],
     targets: [
-        .binaryTarget(name: "TensorFlowLiteC", url: "https://github.com/kewlbear/TensorFlowLiteC/releases/download/0.0.20220616/TensorFlowLiteC.xcframework.zip", checksum: ""),
-        .binaryTarget(name: "TensorFlowLiteCCoreML", url: "https://github.com/kewlbear/TensorFlowLiteC/releases/download/0.0.20220616/TensorFlowLiteCCoreML.xcframework.zip", checksum: ""),
-        .binaryTarget(name: "TensorFlowLiteCMetal", url: "https://github.com/kewlbear/TensorFlowLiteC/releases/download/0.0.20220616/TensorFlowLiteCMetal.xcframework.zip", checksum: ""),
+        .binaryTarget(name: "TensorFlowLiteC", url: "https://github.com/kewlbear/TensorFlowLiteC/releases/download/0.0.20220617/TensorFlowLiteC.xcframework.zip", checksum: ""),
+        .binaryTarget(name: "TensorFlowLiteCCoreML", url: "https://github.com/kewlbear/TensorFlowLiteC/releases/download/0.0.20220617/TensorFlowLiteCCoreML.xcframework.zip", checksum: ""),
+        .binaryTarget(name: "TensorFlowLiteCMetal", url: "https://github.com/kewlbear/TensorFlowLiteC/releases/download/0.0.20220617/TensorFlowLiteCMetal.xcframework.zip", checksum: ""),
         .target(name: "Link",
                 linkerSettings: [.linkedLibrary("c++")]),
     ]
