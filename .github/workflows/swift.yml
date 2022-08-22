@@ -53,7 +53,6 @@ jobs:
       with:
         add: 'Package.swift'
         message: "add ${{ steps.pod.outputs.version }}"
-        pull_strategy: 'NO-PULL'
     - name: Release
       if: ${{ steps.pod.outputs.version }}
       uses: "marvinpinto/action-automatic-releases@latest"
