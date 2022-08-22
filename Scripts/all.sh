@@ -2,7 +2,7 @@ V=$1
 
 cd App/Pods/TensorFlowLiteC/Frameworks
 
-for f in *.framework
+for f in *.xcframework
 do
   sh ../../../../Scripts/convert.sh $f
 done
